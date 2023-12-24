@@ -25,69 +25,38 @@ export interface Comment {
   body: string,
 }
 
-export interface EntityExtractionResponse {
-  time: number,
-  lang: string,
-  timestamp: string,
-  langConfidence: number,
-  annotations: Annotation[],
-  topEntities: TopEntity[],
+export class User {
+  constructor(public firstName: string,
+              public lastName: string,
+              public email: string,
+              public username: string,
+              public permissions: string[]) {
+  }
 }
 
-export interface Annotation {
-  start: number,
-  end: number,
-  spot: string,
-  confidence: number,
-  id: number,
-  title: string,
-  uri: string,
-  label: string,
-  types: string[],
-  categories: string[],
-  abstract: string,
-  image: Image,
+export class EditUser {
+  constructor(public firstName: string,
+              public lastName: string,
+              public password: string,
+              public createP: boolean,
+              public updateP: boolean,
+              public readP: boolean,
+              public deleteP: boolean,
+              public email: string,
+              public username: string) {
+  }
+
 }
 
-export interface Image {
-  full: string,
-  thumbnail: string,
+export interface EditUserRequest {
+  firstName: string,
+  lastName: string,
+  password: string,
+  email: string,
+  username: string,
+  permissions: string[]
 }
 
-export interface TopEntity {
-  id: number,
-  score: number,
-  uri: string,
-}
-
-
-export interface TextSimilarityResponse {
-  time: number,
-  similarity: number,
-  lang: string,
-  timestamp: string,
-}
-
-export interface LanguageDetectionResponse {
-  time: number,
-  timestamp: string,
-  detectedLangs: DetectedLang[],
-}
-
-export interface DetectedLang {
-  lang: string,
-  confidence: number,
-}
-
-export interface SentimentAnalysisResponse {
-  time: number,
-  lang: string,
-  timestamp: string,
-  langConfidence: number,
-  sentiment: Sentiment,
-}
-
-export interface Sentiment {
-  score: number,
-  type: string,
+export interface UsersResponse {
+  users: User[]
 }

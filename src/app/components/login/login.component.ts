@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/services/config/config-service.service';
+import {Observable} from "rxjs";
+import { environment } from 'src/environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +13,11 @@ import { ConfigService } from 'src/app/services/config/config-service.service';
 })
 export class LoginComponent implements OnInit {
 
+  private readonly authEndpoint = environment.authEndpoint
   email: string = '';
   password: string = '';
 
-  constructor(private configService: ConfigService, private router: Router) {
+  constructor(private configService: ConfigService, private router: Router, private httpClient: HttpClient, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -25,15 +30,18 @@ export class LoginComponent implements OnInit {
 
 
   signIn() {
-    if (this.email === 'admin' && this.password === 'admin') {
-      this.configService.setToken('1234567890');
-      this.router.navigate(['homepage']);
 
-      // alert('Login successful');
-    } else {
-      // alert('Login failed');
-    }
-
-
+    this.authService.login(this.email, this.password).subscribe(
+      response => {
+        // Handle the response as needed
+        this.configService.setToken(response.jwt);
+        this.router.navigate(['homepage']);
+      },
+      error => {
+        // Handle errors
+        alert('Login failed. Please try again.');
+        console.error('Login error:', error);
+      }
+    );
   }
 }

@@ -10,4 +10,29 @@
     </nav>
 </header>
 
-<p>users works!</p>
+<div *ngIf="hasViewPermission()">
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button *ngIf="hasEditPermission()" (click)="editUser(user)">Edit</button>
+            <button *ngIf="hasDeletePermission()" (click)="deleteUser(user)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
