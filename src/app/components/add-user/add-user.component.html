@@ -1,1 +1,40 @@
-<p>add-user works!</p>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username" />
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" formControlName="email" />
+    </div>
+    <div>
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" formControlName="firstName" />
+    </div>
+    <div>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" formControlName="lastName" />
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" />
+    </div>
+    <!--check box-->
+    <div>
+        <label for="Create">Create permission:</label>
+        <input type="checkbox" id="createP" formControlName="createP" />
+    </div>
+    <div>
+        <label for="Update">Update permission:</label>
+        <input type="checkbox" id="updateP" formControlName="updateP" />
+    </div>
+    <div>
+        <label for="Delete">Delete permission:</label>
+        <input type="checkbox" id="deleteP" formControlName="deleteP" />
+    </div>
+    <div>
+        <label for="Read">Read permission:</label>
+        <input type="checkbox" id="readP" formControlName="readP" />
+    </div>
+    <button type="submit">Submit</button>
+</form>

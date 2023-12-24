@@ -17,6 +17,10 @@ export class UsersComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    if(!this.configService.checkReadPermission()) {
+      alert("You don't have permission to view users");
+      return;
+    }
     this.userService.getAll().subscribe((data: UsersResponse)=>{
       this.users = data.users;
       console.log(data.users);
@@ -32,6 +36,10 @@ export class UsersComponent implements OnInit {
     this.editService.setUser(user);
   
     this.router.navigate(['edit-user']);
+  }
+
+  addUser() {
+    this.router.navigate(['add-user']);
   }
 
   deleteUser(user: User) {

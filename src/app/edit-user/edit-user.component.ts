@@ -77,7 +77,6 @@ export class EditUserComponent  implements OnInit{
     }
     this.editService.editUser(this.user).subscribe(
       (response) => {
-        // Extract the status code from the HTTP response
         if (response == 200) {
           alert('User updated successfully');
           this.editService.clearUser();

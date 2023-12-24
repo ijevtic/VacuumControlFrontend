@@ -4,6 +4,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <button class="btn btn-primary" (click)="logout()">Log out</button>
+            <button *ngIf="hasAddPermission()" class="btn btn-primary" (click)="addUser()">Add user</button>
           </div>
         </div>
       </div>
@@ -34,5 +35,4 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  
+</div>

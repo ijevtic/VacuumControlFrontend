@@ -48,6 +48,16 @@ export class EditUser {
 
 }
 
+export class AddUserRequest {
+  constructor(public firstName: string,
+    public lastName: string,
+    public password: string,
+    public permissions: string[],
+    public email: string,
+    public username: string) {
+}
+}
+
 export interface EditUserRequest {
   firstName: string,
   lastName: string,
