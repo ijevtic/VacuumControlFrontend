@@ -43,6 +43,12 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(user: User) {
+    this.userService.deleteUser(user.email).subscribe((data: any)=>{
+      if (data == 200) {
+        alert('User deleted successfully');
+        this.router.navigate(['/users']);
+      }
+    })
   }
 
   hasViewPermission(): boolean {

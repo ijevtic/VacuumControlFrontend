@@ -31,16 +31,36 @@ export class UserService {
       });
 
       return this.httpClient.post<any>(this.apiUrl + '/create-user', user, { headers, observe: 'response' })
-    .pipe(
-      map((response: HttpResponse<any>) => {
-        // Extract the status code from the HTTP response
-        return response.status;
-      }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
-      })
-    );
+      .pipe(
+        map((response: HttpResponse<any>) => {
+          // Extract the status code from the HTTP response
+          return response.status;
+        }),
+        catchError(error => {
+          // Handle errors here if needed
+          console.error('Error:', error);
+          throw error;
+        })
+      );
+    }
+
+    deleteUser(email: string): Observable<any> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + this.configService.getToken()
+      });
+
+      return this.httpClient.delete<any>(this.apiUrl + '/delete/' + email, { headers, observe: 'response' })
+      .pipe(
+        map((response: HttpResponse<any>) => {
+          // Extract the status code from the HTTP response
+          return response.status;
+        }),
+        catchError(error => {
+          // Handle errors here if needed
+          console.error('Error:', error);
+          throw error;
+        })
+      );
     }
 }
