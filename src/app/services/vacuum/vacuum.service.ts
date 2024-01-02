@@ -212,4 +212,28 @@ export class VacuumService {
       })
     );
   }
+
+  hasSearchPermission(): boolean {
+    return this.configService.checkVacuumSearchPermission();
+  }
+
+  hasAddPermission(): boolean {
+    return this.configService.checkVacuumAddPermission();
+  }
+
+  hasRemovePermission(): boolean {
+    return this.configService.checkVacuumRemovePermission();
+  }
+
+  hasStartPermission(): boolean {
+    return this.configService.checkVacuumStartPermission();
+  }
+
+  hasStopPermission(): boolean {
+    return this.configService.checkVacuumStopPermission();
+  }
+
+  hasDischargePermission(): boolean {
+    return this.configService.checkVacuumDischargePermission();
+  }
 }

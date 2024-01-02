@@ -13,6 +13,12 @@ export class ConfigService {
   private permRead = environment.readPermissions
   private permUpdate = environment.updatePermissions
   private permDelete = environment.deletePermissions
+  private permVacuumAdd = environment.vacuumAddPermissions
+  private permVacuumRemove = environment.vacuumRemovePermissions
+  private permVacuumStart = environment.vacuumStartPermissions
+  private permVacuumStop = environment.vacuumStopPermissions
+  private permVacuumDischarge = environment.vacuumDischargePermissions
+  private permVacuumSearch = environment.vacuumSearchPermissions
 
   constructor() {
     this.token = '';
@@ -78,5 +84,29 @@ export class ConfigService {
 
   checkReadPermission(): boolean {
     return this.permissions.has(this.permRead);
+  }
+
+  checkVacuumAddPermission(): boolean {
+    return this.permissions.has(this.permVacuumAdd);
+  }
+
+  checkVacuumRemovePermission(): boolean {
+    return this.permissions.has(this.permVacuumRemove);
+  }
+
+  checkVacuumStartPermission(): boolean {
+    return this.permissions.has(this.permVacuumStart);
+  }
+
+  checkVacuumStopPermission(): boolean {
+    return this.permissions.has(this.permVacuumStop);
+  }
+
+  checkVacuumDischargePermission(): boolean {
+    return this.permissions.has(this.permVacuumDischarge);
+  }
+
+  checkVacuumSearchPermission(): boolean {
+    return this.permissions.has(this.permVacuumSearch);
   }
 }

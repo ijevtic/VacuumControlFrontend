@@ -13,6 +13,12 @@ export const environment = {
   createPermissions: 'Create',
   deletePermissions: 'Delete',
   updatePermissions: 'Update',
+  vacuumAddPermissions: 'AddV',
+  vacuumRemovePermissions: 'RemoveV',
+  vacuumStartPermissions: 'StartV',
+  vacuumStopPermissions: 'StopV',
+  vacuumDischargePermissions: 'DischargeV',
+  vacuumSearchPermissions: 'SearchV',
 };
 
 /*
