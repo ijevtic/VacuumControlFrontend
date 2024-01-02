@@ -34,6 +34,14 @@ export class User {
   }
 }
 
+export class Vacuum {
+  constructor(public name: string,
+              public status: string,
+              public active: boolean,
+              public dateCreated: number) {
+  }
+}
+
 export class EditUser {
   constructor(public firstName: string,
               public lastName: string,
@@ -69,4 +77,25 @@ export interface EditUserRequest {
 
 export interface UsersResponse {
   users: User[]
+}
+
+export interface VacuumResponse {
+  vacuum: Vacuum[]
+}
+
+export interface SearchRequest {
+  name?: string;
+  status?: string[];
+  dateFrom?: number;
+  dateTo?: number;
+}
+
+export interface AddVacuumRequest {
+  name: string,
+  active: boolean
+}
+
+export interface ScheduleRequest {
+  vacuumName: string,
+  time: number,
 }

@@ -7,6 +7,7 @@ export const environment = {
   // postApi: 'https://jsonplaceholder.typicode.com',
   usersEndpoint: 'http://localhost:8080/users',
   authEndpoint: 'http://localhost:8080/auth',
+  vacuumEndpoint: 'http://localhost:8080/vacuum',
   readPermissions: 'Read',
   createPermissions: 'Create',
   deletePermissions: 'Delete',
