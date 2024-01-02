@@ -13,16 +13,6 @@ export class VacuumService {
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {}
 
-  getAll(): Observable<VacuumResponse> {
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.configService.getToken()
-    });
-
-    return this.httpClient.get<VacuumResponse>(this.apiUrl + '/get', { headers });
-  }
-
   search(name: string, status: string[], dateFrom: number, dateTo: number): Observable<VacuumResponse> {
 
     const headers = new HttpHeaders({

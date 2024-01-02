@@ -11,6 +11,15 @@ import { AddUserComponent } from './components/add-user/add-user.component';
 import {HttpClientModule} from "@angular/common/http";
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { HistoryComponent } from './components/history/history.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { CustomDateFormatPipe } from './pipes/custom-date-format/custom-date-format.pipe';
 
 
 @NgModule({
@@ -20,6 +29,8 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     UsersComponent,
     AddUserComponent,
     EditUserComponent,
+    HistoryComponent,
+    CustomDateFormatPipe
   ],
   imports: [
     BrowserModule,
@@ -29,6 +40,13 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatCheckboxModule
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

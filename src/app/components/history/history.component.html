@@ -1,0 +1,16 @@
+<div *ngIf="historyEntries.length > 0">
+    <p>History:</p>
+    <div *ngFor="let entry of historyEntries; let i = index;" class="col-12">
+        <mat-card class="example-card">
+            <mat-card-content>
+                <p>
+                    <b>{{ entry.dateCreated | customDateFormat }}</b>
+                    <br>
+                    {{ entry.vacuumName }}
+                    <br>
+                    {{ entry.message }}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
