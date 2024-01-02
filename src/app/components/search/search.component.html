@@ -40,19 +40,41 @@
   </form>
   
 
-<div *ngIf="vacuums.length > 0">
-    <p>Vacuums:</p>
-    <div *ngFor="let entry of vacuums; let i = index;" class="col-12">
-        <mat-card class="example-card">
-            <mat-card-content>
-                <p>
-                    <b>{{ entry.dateCreated | customDateFormat }}</b>
-                    <br>
-                    {{ entry.name }}
-                    <br>
-                    {{ entry.status }}
-                </p>
-            </mat-card-content>
-        </mat-card>
-    </div>
-</div>
+  <table mat-table [dataSource]="vacuums">
+    <!-- Date Created Column -->
+    <ng-container matColumnDef="dateCreated">
+      <th mat-header-cell *matHeaderCellDef>Date Created</th>
+      <td mat-cell *matCellDef="let vacuum">{{ vacuum.dateCreated | customDateFormat }}</td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let vacuum">{{ vacuum.name }}</td>
+    </ng-container>
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let vacuum">{{ vacuum.status }}</td>
+    </ng-container>
+    <!-- Action Columns (Start, Stop, Discharge, Remove) -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let vacuum">
+          <button mat-icon-button *ngIf="hasStartPermission()" (click)="startVacuum(vacuum)" title="Start">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="hasStopPermission()" (click)="stopVacuum(vacuum)" title="Stop">
+            <mat-icon>stop</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="hasDischargePermission()" (click)="dischargeVacuum(vacuum)" title="Discharge">
+            <mat-icon>refresh</mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="hasRemovePermission()" (click)="removeVacuum(vacuum)" title="Remove">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    <!-- Table Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

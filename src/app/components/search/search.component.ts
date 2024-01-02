@@ -35,11 +35,13 @@ export class SearchComponent {
   @ViewChild('picker') pickerFrom: NgxMatDatetimepicker<Date>;
   //@ts-ignore
   @ViewChild('picker') pickerTo: NgxMatDatetimepicker<Date>;
+  displayedColumns: string[] = ['name', 'status', 'actions'];
 
 
 
   constructor(private vacuumService: VacuumService, private fb: FormBuilder) {
     this.vacuumService.search(null, null, null, null).subscribe((data: VacuumResponse)=>{
+      console.log(data.vacuums);
       this.vacuums = data.vacuums;
     })
     // this.picker = new MatDatepicker<Date>();
@@ -73,10 +75,66 @@ export class SearchComponent {
   onSubmit(): void {
     var formName = this.searchForm.value.name != '' ? this.searchForm.value.name : null;
     var formStatus = this.searchForm.value.status.length != 0 ? this.searchForm.value.status : null;
-    var formDateFrom = Math.floor(this.dateControlFrom.value.getTime() / 1000);
-    var formDateTo = Math.floor(this.dateControlTo.value.getTime() / 1000);
+    var formDateFrom = this.dateControlFrom.value ? Math.floor(this.dateControlFrom.value.getTime() / 1000): null;
+    var formDateTo = this.dateControlTo.value ? Math.floor(this.dateControlTo.value.getTime() / 1000): null;
     this.vacuumService.search(formName, formStatus, formDateFrom, formDateTo).subscribe((data: VacuumResponse)=>{
       this.vacuums = data.vacuums;
+    })
+  }
+
+  hasStartPermission(): boolean {
+    return this.vacuumService.hasStartPermission();
+  }
+
+  hasStopPermission(): boolean {
+    return this.vacuumService.hasStopPermission();
+  }
+
+  hasRemovePermission(): boolean {
+    return this.vacuumService.hasRemovePermission();
+  }
+
+  hasDischargePermission(): boolean {
+    return this.vacuumService.hasDischargePermission();
+  }
+
+  startVacuum(vacuum: Vacuum) {
+    this.vacuumService.startVacuum(vacuum.name).subscribe((data: any)=>{
+      if (data >= 200 && data < 300) {
+        alert('Vacuum started successfully');
+      } else {
+        alert('Vacuum failed to start');
+      }
+    })
+  }
+
+  stopVacuum(vacuum: Vacuum) {
+    this.vacuumService.stopVacuum(vacuum.name).subscribe((data: any)=>{
+      if (data >= 200 && data < 300) {
+        alert('Vacuum stopped successfully');
+      } else {
+        alert('Vacuum failed to stop');
+      }
+    })
+  }
+
+  dischargeVacuum(vacuum: Vacuum) {
+    this.vacuumService.dischargeVacuum(vacuum.name).subscribe((data: any)=>{
+      if (data >= 200 && data < 300) {
+        alert('Vacuum removed successfully');
+      } else {
+        alert('Vacuum failed to remove');
+      }
+    })
+  }
+
+  removeVacuum(vacuum: Vacuum) {
+    this.vacuumService.removeVacuum(vacuum.name).subscribe((data: any)=>{
+      if (data >= 200 && data < 300) {
+        alert('Vacuum removed successfully');
+      } else {
+        alert('Vacuum failed to remove');
+      }
     })
   }
 }

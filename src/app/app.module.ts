@@ -28,6 +28,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
+import { MatIconModule } from '@angular/material/icon'; // Import MatIconModule
 
 
 @NgModule({
@@ -64,7 +66,9 @@ import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModu
     NoopAnimationsModule,
     NgxMatDatetimePickerModule,
     NgxMatTimepickerModule,
-    NgxMatNativeDateModule
+    NgxMatNativeDateModule,
+    MatTableModule,
+    MatIconModule
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

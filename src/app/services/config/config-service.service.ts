@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 export class ConfigService {
 
   private token: string;
-  private permissions: Map<String, Boolean> = new Map<String, Boolean>();
+  private permissions: Map<String, Boolean>;
   private permCreate = environment.createPermissions
   private permRead = environment.readPermissions
   private permUpdate = environment.updatePermissions
@@ -22,23 +22,14 @@ export class ConfigService {
 
   constructor() {
     this.token = '';
+    this.permissions = new Map<String, Boolean>()
   }
 
   setToken(token: string): void {
     localStorage.setItem('jwt', token);
     this.token = token;
     //get permissions from token claims
-
-    const helper = new JwtHelperService();
-    
-    let decodedToken = helper.decodeToken(token);
-    
-    console.log(decodedToken);
-    // Extract permissions
-    let arr = decodedToken.roles;
-    for (let i = 0; i < arr.length; i++) {
-      this.permissions.set(arr[i], true);
-    }
+    this.updatePermissions();
 
     console.log(this.permissions);
   }
@@ -61,9 +52,23 @@ export class ConfigService {
     const jwt = localStorage.getItem('jwt');
     if (jwt !== null) {
       this.token = jwt;
+      this.updatePermissions();
     } else {
       this.token = '';
     }
+  }
+
+  updatePermissions(): void {
+    const helper = new JwtHelperService();
+    let decodedToken = helper.decodeToken(this.token);
+    console.log(decodedToken);
+    // Extract permissions
+    let arr = decodedToken.roles;
+    for (let i = 0; i < arr.length; i++) {
+      this.permissions.set(arr[i], true);
+    }
+
+    console.log(this.permissions);
   }
 
   checkUserPermission(permission: string): boolean {
@@ -95,6 +100,9 @@ export class ConfigService {
   }
 
   checkVacuumStartPermission(): boolean {
+    console.log(this.token)
+    console.log("trenutni token")
+    console.log(this.permissions)
     return this.permissions.has(this.permVacuumStart);
   }
 

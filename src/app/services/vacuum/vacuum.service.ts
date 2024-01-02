@@ -99,7 +99,7 @@ export class VacuumService {
       'Authorization': 'Bearer ' + this.configService.getToken()
     });
 
-    return this.httpClient.post<any>(this.apiUrl + '/discharge/' + vacuumName, { headers, observe: 'response' })
+    return this.httpClient.post<any>(this.apiUrl + '/discharge/' + vacuumName, {}, { headers, observe: 'response' })
     .pipe(
       map((response: HttpResponse<any>) => {
         // Extract the status code from the HTTP response
@@ -118,8 +118,10 @@ export class VacuumService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.configService.getToken()
     });
+    console.log(this.configService.getToken());
+    console.log(vacuumName)
 
-    return this.httpClient.post<any>(this.apiUrl + '/start/' + vacuumName, { headers, observe: 'response' })
+    return this.httpClient.post<any>(this.apiUrl + '/start/' + vacuumName, {}, { headers, observe: 'response' })
     .pipe(
       map((response: HttpResponse<any>) => {
         // Extract the status code from the HTTP response
@@ -139,7 +141,7 @@ export class VacuumService {
       'Authorization': 'Bearer ' + this.configService.getToken()
     });
 
-    return this.httpClient.post<any>(this.apiUrl + '/stop/' + vacuumName, { headers, observe: 'response' })
+    return this.httpClient.post<any>(this.apiUrl + '/stop/' + vacuumName, {}, { headers, observe: 'response' })
     .pipe(
       map((response: HttpResponse<any>) => {
         // Extract the status code from the HTTP response
