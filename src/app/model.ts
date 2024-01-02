@@ -75,12 +75,22 @@ export interface EditUserRequest {
   permissions: string[]
 }
 
+export interface ErrorResponse {
+  message: string
+  dateCreated: number,
+  vacuumName: string
+}
+
 export interface UsersResponse {
   users: User[]
 }
 
 export interface VacuumResponse {
   vacuum: Vacuum[]
+}
+
+export interface ErrorsResponse {
+  errors: ErrorResponse[]
 }
 
 export interface SearchRequest {
