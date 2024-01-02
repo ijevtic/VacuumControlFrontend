@@ -20,6 +20,14 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CustomDateFormatPipe } from './pipes/custom-date-format/custom-date-format.pipe';
+import { SearchComponent } from './components/search/search.component';
+import { VacuumStatusPipe } from './pipes/vacuum-status/vacuum-status.pipe';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 
 
 @NgModule({
@@ -30,7 +38,9 @@ import { CustomDateFormatPipe } from './pipes/custom-date-format/custom-date-for
     AddUserComponent,
     EditUserComponent,
     HistoryComponent,
-    CustomDateFormatPipe
+    CustomDateFormatPipe,
+    SearchComponent,
+    VacuumStatusPipe
   ],
   imports: [
     BrowserModule,
@@ -46,7 +56,15 @@ import { CustomDateFormatPipe } from './pipes/custom-date-format/custom-date-for
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatToolbarModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    NgxMatNativeDateModule
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

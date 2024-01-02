@@ -5,6 +5,8 @@ import { UsersComponent } from 'src/app/components/users/users.component';
 import { AuthGuard } from './auth.guard';
 import { AddUserComponent } from 'src/app/components/add-user/add-user.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import { HistoryComponent } from './components/history/history.component';
+import { SearchComponent } from './components/search/search.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,18 @@ const routes: Routes = [
   {
     path: "edit-user",
     component: EditUserComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
+  },
+  {
+    path: "history",
+    component: HistoryComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
+  },
+  {
+    path: "search",
+    component: SearchComponent,
     canActivate: [AuthGuard],
     canDeactivate: [AuthGuard]
   },

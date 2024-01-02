@@ -37,7 +37,6 @@ export class User {
 export class Vacuum {
   constructor(public name: string,
               public status: string,
-              public active: boolean,
               public dateCreated: number) {
   }
 }
@@ -86,7 +85,7 @@ export interface UsersResponse {
 }
 
 export interface VacuumResponse {
-  vacuum: Vacuum[]
+  vacuums: Vacuum[]
 }
 
 export interface ErrorsResponse {
@@ -101,8 +100,7 @@ export interface SearchRequest {
 }
 
 export interface AddVacuumRequest {
-  name: string,
-  active: boolean
+  name: string
 }
 
 export interface ScheduleRequest {

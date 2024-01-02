@@ -1,3 +1,19 @@
+<header>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span [routerLink]="'/'" class="navbar-brand">RAF Vacuum Control</span>
+      <span class="spacer"></span>
+      <span class="navbar-nav">
+        <a [routerLink]="'/'" mat-button routerLinkActive="active">Home</a>
+        <a [routerLink]="'/search'" mat-button routerLinkActive="active">Search Vacuums</a>
+        <a [routerLink]="'/history'" mat-button routerLinkActive="active">Error History</a>
+        <!-- Add more navigation links as needed -->
+      </span>
+      <!-- Add more navigation links or components on the right side if needed -->
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>
+
 <div class="container pt-3">
   <router-outlet></router-outlet>
 </div>

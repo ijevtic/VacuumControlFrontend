@@ -13,7 +13,7 @@ export class VacuumService {
 
   constructor(private httpClient: HttpClient, private configService: ConfigService) {}
 
-  search(name: string, status: string[], dateFrom: number, dateTo: number): Observable<VacuumResponse> {
+  search(name: string| null, status: string[]| null, dateFrom: number| null, dateTo: number| null): Observable<VacuumResponse> {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
