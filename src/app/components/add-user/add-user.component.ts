@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AddUserRequest, EditUserRequest } from 'src/app/model';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { environment } from 'src/environments/environment';
 
@@ -15,7 +16,8 @@ export class AddUserComponent{
   editForm!: FormGroup;
   user!: AddUserRequest;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService, private route: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,
+    private route: ActivatedRoute, private notificationService: NotificationService) {
     this.editForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -56,11 +58,11 @@ export class AddUserComponent{
     this.userService.addUser(this.user).subscribe(
       (response) => {
         if (response == 201) {
-          alert('User added successfully');
+          this.notificationService.showNotification('User added successfully');
           this.router.navigate(['/users']);
         }
         else {
-          alert('Error adding user');
+          this.notificationService.showNotification('Error adding user');
         }
       },
       (error) => {

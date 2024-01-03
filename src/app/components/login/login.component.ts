@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,9 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
 
-  constructor(private configService: ConfigService, private router: Router, private httpClient: HttpClient, private authService: AuthService) {
+  constructor(private configService: ConfigService, private router: Router, 
+    private httpClient: HttpClient, private authService: AuthService,
+    private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -39,7 +42,7 @@ export class LoginComponent implements OnInit {
       },
       error => {
         // Handle errors
-        alert('Login failed. Please try again.');
+        this.notificationService.showNotification('Login failed. Please try again.');
         console.error('Login error:', error);
       }
     );

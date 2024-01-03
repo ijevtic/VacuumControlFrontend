@@ -30,6 +30,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddVacuumComponent } from './components/add-vacuum/add-vacuum.component';
 
 
@@ -70,7 +71,8 @@ import { AddVacuumComponent } from './components/add-vacuum/add-vacuum.component
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [JwtHelperService],
   bootstrap: [AppComponent]

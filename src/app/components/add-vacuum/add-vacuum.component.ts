@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AddVacuumRequest } from 'src/app/model';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { VacuumService } from 'src/app/services/vacuum/vacuum.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { VacuumService } from 'src/app/services/vacuum/vacuum.service';
 export class AddVacuumComponent {
   vacuumName: string = '';
   
-  constructor(private router: Router, private vacuumService: VacuumService) {
+  constructor(private router: Router, private vacuumService: VacuumService, private notificationService: NotificationService) {
   }
 
   onSubmit() {
@@ -25,11 +26,11 @@ export class AddVacuumComponent {
     this.vacuumService.addVacuum(request).subscribe(
       (response) => {
         if (response == 201) {
-          alert('Vacuum added successfully');
+          this.notificationService.showNotification('Vacuum added successfully');
           this.router.navigate(['/search']);
         }
         else {
-          alert('Error adding vacuum');
+          this.notificationService.showNotification('Error adding vacuum');
         }
       },
       (error) => {

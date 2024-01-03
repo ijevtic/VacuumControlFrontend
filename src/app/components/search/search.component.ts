@@ -4,6 +4,7 @@ import { VacuumService } from 'src/app/services/vacuum/vacuum.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgxMatDatetimepicker } from '@angular-material-components/datetime-picker';
 import { ThemePalette } from '@angular/material/core';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 
 
 @Component({
@@ -38,7 +39,8 @@ export class SearchComponent {
 
 
 
-  constructor(private vacuumService: VacuumService, private fb: FormBuilder) {
+  constructor(private vacuumService: VacuumService, private fb: FormBuilder,
+    private notificationService: NotificationService) {
     this.vacuumService.search(null, null, null, null).subscribe((data: VacuumResponse)=>{
       console.log(data.vacuums);
       this.vacuums = data.vacuums;
@@ -100,9 +102,9 @@ export class SearchComponent {
   startVacuum(vacuum: Vacuum) {
     this.vacuumService.startVacuum(vacuum.name).subscribe((data: any)=>{
       if (data >= 200 && data < 300) {
-        alert('Vacuum started successfully');
+        this.notificationService.showNotification('Vacuum started successfully');
       } else {
-        alert('Vacuum failed to start');
+        this.notificationService.showNotification('Vacuum failed to start');
       }
     })
   }
@@ -110,9 +112,9 @@ export class SearchComponent {
   stopVacuum(vacuum: Vacuum) {
     this.vacuumService.stopVacuum(vacuum.name).subscribe((data: any)=>{
       if (data >= 200 && data < 300) {
-        alert('Vacuum stopped successfully');
+        this.notificationService.showNotification('Vacuum stopped successfully');
       } else {
-        alert('Vacuum failed to stop');
+        this.notificationService.showNotification('Vacuum failed to stop');
       }
     })
   }
@@ -120,9 +122,9 @@ export class SearchComponent {
   dischargeVacuum(vacuum: Vacuum) {
     this.vacuumService.dischargeVacuum(vacuum.name).subscribe((data: any)=>{
       if (data >= 200 && data < 300) {
-        alert('Vacuum removed successfully');
+        this.notificationService.showNotification('Vacuum discharged successfully');
       } else {
-        alert('Vacuum failed to remove');
+        this.notificationService.showNotification('Vacuum failed to discharge');
       }
     })
   }
@@ -130,9 +132,9 @@ export class SearchComponent {
   removeVacuum(vacuum: Vacuum) {
     this.vacuumService.removeVacuum(vacuum.name).subscribe((data: any)=>{
       if (data >= 200 && data < 300) {
-        alert('Vacuum removed successfully');
+        this.notificationService.showNotification('Vacuum removed successfully');
       } else {
-        alert('Vacuum failed to remove');
+        this.notificationService.showNotification('Vacuum failed to remove');
       }
     })
   }

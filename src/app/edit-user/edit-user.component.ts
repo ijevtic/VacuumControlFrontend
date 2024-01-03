@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EditService } from '../services/edit/edit.service';
 import { EditUser, EditUserRequest, User } from '../model';
 import { environment } from 'src/environments/environment';
+import { NotificationService } from '../services/notification/notification.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -15,7 +16,8 @@ export class EditUserComponent  implements OnInit{
   editForm!: FormGroup;
   user!: EditUserRequest;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private editService: EditService, private route: ActivatedRoute) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, 
+    private editService: EditService, private route: ActivatedRoute, private notificationService: NotificationService) {}
 
 
 
@@ -78,12 +80,12 @@ export class EditUserComponent  implements OnInit{
     this.editService.editUser(this.user).subscribe(
       (response) => {
         if (response == 200) {
-          alert('User updated successfully');
+          this.notificationService.showNotification('User updated successfully');
           this.editService.clearUser();
           this.router.navigate(['/users']);
         }
         else {
-          alert('Error updating user');
+          this.notificationService.showNotification('Error updating user');
         }
       },
       (error) => {

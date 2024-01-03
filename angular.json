@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "nwpd3-front:build:production"
+              "buildTarget": "nwpd3-front:build:production"
             },
             "development": {
-              "browserTarget": "nwpd3-front:build:development"
+              "buildTarget": "nwpd3-front:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "nwpd3-front:build"
+            "buildTarget": "nwpd3-front:build"
           }
         },
         "test": {

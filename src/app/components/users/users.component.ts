@@ -3,6 +3,7 @@ import {Router, NavigationExtras} from "@angular/router";
 import { User, UsersResponse } from 'src/app/model';
 import { ConfigService } from 'src/app/services/config/config-service.service';
 import { EditService } from 'src/app/services/edit/edit.service';
+import { NotificationService } from 'src/app/services/notification/notification.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -12,13 +13,14 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UsersComponent implements OnInit {
   users: User[] = [];
-  constructor(private configService: ConfigService, private userService: UserService, private editService: EditService, private router: Router) { 
+  constructor(private configService: ConfigService, private userService: UserService, 
+    private editService: EditService, private router: Router, private notificationService: NotificationService) { 
 
   }
   
   ngOnInit(): void {
     if(!this.configService.checkReadPermission()) {
-      alert("You don't have permission to view users");
+      this.notificationService.showNotification('You don\'t have permission to view users');
       return;
     }
     this.userService.getAll().subscribe((data: UsersResponse)=>{
@@ -45,8 +47,10 @@ export class UsersComponent implements OnInit {
   deleteUser(user: User) {
     this.userService.deleteUser(user.email).subscribe((data: any)=>{
       if (data == 200) {
-        alert('User deleted successfully');
+        this.notificationService.showNotification('User deleted successfully');
         this.router.navigate(['/users']);
+      } else {
+        this.notificationService.showNotification('Error deleting user');
       }
     })
   }
