@@ -5,10 +5,10 @@
       <span class="spacer"></span>
       <span class="navbar-nav">
         <a *ngIf="isLoggedIn()" [routerLink]="'/'" mat-button routerLinkActive="active">Home</a>
-        <a *ngIf="isLoggedIn()" [routerLink]="'/search'" mat-button routerLinkActive="active">Search Vacuums</a>
+        <a *ngIf="isLoggedIn() && hasReadVacuumsPermission()" [routerLink]="'/search'" mat-button routerLinkActive="active">Search Vacuums</a>
         <a *ngIf="isLoggedIn()" [routerLink]="'/history'" mat-button routerLinkActive="active">Error History</a>
-        <a *ngIf="isLoggedIn()" [routerLink]="'/add-vacuum'" mat-button routerLinkActive="active">Add Vacuum</a>
-        <a *ngIf="isLoggedIn()" [routerLink]="'/add-user'" mat-button routerLinkActive="active">Add User</a>
+        <a *ngIf="isLoggedIn() && hasAddVacuumPermission()" [routerLink]="'/add-vacuum'" mat-button routerLinkActive="active">Add Vacuum</a>
+        <a *ngIf="isLoggedIn() && hasAddUserPermission()" [routerLink]="'/add-user'" mat-button routerLinkActive="active">Add User</a>
 
         <!-- Add more navigation links as needed -->
       </span>

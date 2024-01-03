@@ -35,6 +35,12 @@ export class EditUserComponent  implements OnInit{
         updateP: false,
         deleteP: false,
         readP: false,
+        readVP: false,
+        addVP: false,
+        removeVP: false,
+        startVP: false,
+        stopVP: false,
+        dischargeVP: false,
       };
     }
     // Initialize the form with default values or empty values
@@ -46,6 +52,13 @@ export class EditUserComponent  implements OnInit{
       updateP: [user.updateP],
       deleteP: [user.deleteP],
       readP: [user.readP],
+      readVP: [user.readVP],
+      addVP: [user.addVP],
+      removeVP: [user.removeVP],
+      startVP: [user.startVP],
+      stopVP: [user.stopVP],
+      dischargeVP: [user.dischargeVP],
+
     });
 
     this.user = {
@@ -76,6 +89,24 @@ export class EditUserComponent  implements OnInit{
     }
     if (formData.readP) {
       this.user.permissions.push(environment.readPermissions);
+    }
+    if (formData.readVP) {
+      this.user.permissions.push(environment.vacuumSearchPermissions);
+    }
+    if (formData.addVP) {
+      this.user.permissions.push(environment.vacuumAddPermissions);
+    }
+    if (formData.removeVP) {
+      this.user.permissions.push(environment.vacuumRemovePermissions);
+    }
+    if (formData.startVP) {
+      this.user.permissions.push(environment.vacuumStartPermissions);
+    }
+    if (formData.stopVP) {
+      this.user.permissions.push(environment.vacuumStopPermissions);
+    }
+    if (formData.dischargeVP) {
+      this.user.permissions.push(environment.vacuumDischargePermissions);
     }
     this.editService.editUser(this.user).subscribe(
       (response) => {

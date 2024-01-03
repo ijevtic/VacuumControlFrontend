@@ -23,6 +23,12 @@ export class EditService {
     let deleteP = false;
     let updateP = false;
     let readP = false;
+    let readVP = false;
+    let addVP = false;
+    let removeVP = false;
+    let startVP = false;
+    let stopVP = false;
+    let dischargeVP = false;
     for (let role of user.permissions) {
       if (role === environment.createPermissions) {
         createP = true;
@@ -36,6 +42,24 @@ export class EditService {
       if (role === environment.readPermissions) {
         readP = true;
       }
+      if (role === environment.vacuumSearchPermissions) {
+        readVP = true;
+      }
+      if (role === environment.vacuumAddPermissions) {
+        addVP = true;
+      }
+      if (role === environment.vacuumRemovePermissions) {
+        removeVP = true;
+      }
+      if (role === environment.vacuumStartPermissions) {
+        startVP = true;
+      }
+      if (role === environment.vacuumStopPermissions) {
+        stopVP = true;
+      }
+      if (role === environment.vacuumDischargePermissions) {
+        dischargeVP = true;
+      }
     }
     this.user = {
       firstName: user.firstName,
@@ -45,6 +69,12 @@ export class EditService {
       updateP: updateP,
       deleteP: deleteP,
       readP: readP,
+      readVP: readVP,
+      addVP: addVP,
+      removeVP: removeVP,
+      startVP: startVP,
+      stopVP: stopVP,
+      dischargeVP: dischargeVP,
       email: user.email,
       username: user.username
     };

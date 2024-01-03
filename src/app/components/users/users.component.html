@@ -1,25 +1,38 @@
 <div *ngIf="hasViewPermission()">
-    <table>
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-          <th>Email</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.firstName }}</td>
-          <td>{{ user.lastName }}</td>
-          <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
-          <td>
-            <button *ngIf="hasEditPermission()" (click)="editUser(user)">Edit</button>
-            <button *ngIf="hasDeletePermission()" (click)="deleteUser(user)">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <mat-table [dataSource]="users">
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.username }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+      <mat-cell *matCellDef="let user">
+        <button *ngIf="hasEditPermission()" mat-icon-button (click)="editUser(user)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button *ngIf="hasDeletePermission()" mat-icon-button (click)="deleteUser(user)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="['firstName', 'lastName', 'username', 'email', 'actions']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['firstName', 'lastName', 'username', 'email', 'actions']"></mat-row>
+  </mat-table>
 </div>

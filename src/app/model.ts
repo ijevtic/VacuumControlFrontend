@@ -49,6 +49,12 @@ export class EditUser {
               public updateP: boolean,
               public readP: boolean,
               public deleteP: boolean,
+              public readVP: boolean,
+              public addVP: boolean,
+              public removeVP: boolean,
+              public startVP: boolean,
+              public stopVP: boolean,
+              public dischargeVP: boolean,
               public email: string,
               public username: string) {
   }

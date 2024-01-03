@@ -1,65 +1,40 @@
-<form [formGroup]="editForm" (ngSubmit)="onSubmit()">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" formControlName="username" />
-    </div>
-    <div>
-        <label for="email">Email:</label>
-        <input type="text" id="email" formControlName="email" />
-    </div>
-    <div>
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" formControlName="firstName" />
-    </div>
-    <div>
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" formControlName="lastName" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" formControlName="password" />
-    </div>
-    <!--check box-->
-    <div>
-        <label for="Create">Create permission:</label>
-        <input type="checkbox" id="createP" formControlName="createP" />
-    </div>
-    <div>
-        <label for="Update">Update permission:</label>
-        <input type="checkbox" id="updateP" formControlName="updateP" />
-    </div>
-    <div>
-        <label for="Delete">Delete permission:</label>
-        <input type="checkbox" id="deleteP" formControlName="deleteP" />
-    </div>
-    <div>
-        <label for="Read">Read permission:</label>
-        <input type="checkbox" id="readP" formControlName="readP" />
-    </div>
-    <div>
-        <label for="ReadV">Read vacuums permission:</label>
-        <input type="checkbox" id="readVP" formControlName="readVP" />
-    </div>
-    <div>
-        <label for="AddV">Add vacuum permission:</label>
-        <input type="checkbox" id="addVP" formControlName="addVP" />
-    </div>
-    <div>
-        <label for="RemoveV">Remove vacuum permission:</label>
-        <input type="checkbox" id="removeVP" formControlName="removeVP" />
-    </div>
-    <div>
-        <label for="StartV">Start vacuum permission:</label>
-        <input type="checkbox" id="startVP" formControlName="startVP" />
-    </div>
-    <div>
-        <label for="StopV">Stop vacuum permission:</label>
-        <input type="checkbox" id="stopVP" formControlName="stopVP" />
-    </div>
-    <div>
-        <label for="DischargeV">Discharge vacuum permission:</label>
-        <input type="checkbox" id="dischargeVP" formControlName="dischargeVP" />
-    </div>
-
-    <button type="submit">Submit</button>
-</form>
+<form [formGroup]="editForm" (ngSubmit)="onSubmit()" style="display: flex; flex-direction: column; gap: 6px;">
+    <mat-form-field>
+      <label for="username">Username:</label>
+      <input matInput type="text" id="username" formControlName="username" />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <label for="email">Email:</label>
+      <input matInput type="text" id="email" formControlName="email" />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <label for="firstName">First Name:</label>
+      <input matInput type="text" id="firstName" formControlName="firstName" />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <label for="lastName">Last Name:</label>
+      <input matInput type="text" id="lastName" formControlName="lastName" />
+    </mat-form-field>
+  
+    <mat-form-field>
+      <label for="password">Password:</label>
+      <input matInput type="password" id="password" formControlName="password" />
+    </mat-form-field>
+  
+    <mat-checkbox formControlName="createP">Create permission</mat-checkbox>
+    <mat-checkbox formControlName="updateP">Update permission</mat-checkbox>
+    <mat-checkbox formControlName="deleteP">Delete permission</mat-checkbox>
+    <mat-checkbox formControlName="readP">Read permission</mat-checkbox>
+    <mat-checkbox formControlName="readVP">Read vacuums permission</mat-checkbox>
+    <mat-checkbox formControlName="addVP">Add vacuum permission</mat-checkbox>
+    <mat-checkbox formControlName="removeVP">Remove vacuum permission</mat-checkbox>
+    <mat-checkbox formControlName="startVP">Start vacuum permission</mat-checkbox>
+    <mat-checkbox formControlName="stopVP">Stop vacuum permission</mat-checkbox>
+    <mat-checkbox formControlName="dischargeVP">Discharge vacuum permission</mat-checkbox>
+  
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+  
