@@ -157,11 +157,21 @@ export class SearchComponent {
   }
 
   scheduleVacuum(vacuum: Vacuum): void {
+    var statuses = [];
+    if(this.hasStartPermission()){
+      statuses.push("Start");
+    }
+    if(this.hasStopPermission()){
+      statuses.push("Stop");
+    }
+    if(this.hasDischargePermission()){
+      statuses.push("Discharge");
+    }
     const dialogRef = this.dialog.open(ScheduleDialogComponent, {
       width: '400px', // Set the desired width
       data: {
         // Pass any data to the dialog if needed
-        statuses: ['Start', 'Stop', 'Discharge'],
+        statuses: statuses,
         name: vacuum.name,
         // Add other data properties as needed
       },

@@ -28,6 +28,12 @@ export class AddUserComponent{
       updateP: false,
       deleteP: false,
       readP: false,
+      readVP: false,
+      addVP: false,
+      removeVP: false,
+      startVP: false,
+      stopVP: false,
+      dischargeVP: false,
     });
   }
   
@@ -54,6 +60,24 @@ export class AddUserComponent{
     }
     if (formData.readP) {
       this.user.permissions.push(environment.readPermissions);
+    }
+    if (formData.readVP) {
+      this.user.permissions.push(environment.vacuumSearchPermissions);
+    }
+    if (formData.addVP) {
+      this.user.permissions.push(environment.vacuumAddPermissions);
+    }
+    if (formData.removeVP) {
+      this.user.permissions.push(environment.vacuumRemovePermissions);
+    }
+    if (formData.startVP) {
+      this.user.permissions.push(environment.vacuumStartPermissions);
+    }
+    if (formData.stopVP) {
+      this.user.permissions.push(environment.vacuumStopPermissions);
+    }
+    if (formData.dischargeVP) {
+      this.user.permissions.push(environment.vacuumDischargePermissions);
     }
     this.userService.addUser(this.user).subscribe(
       (response) => {
