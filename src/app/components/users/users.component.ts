@@ -29,19 +29,10 @@ export class UsersComponent implements OnInit {
     })  
   }
 
-  logout() {
-    this.configService.logout();
-    this.router.navigate(['login']);
-  }
-
   editUser(user: User) {
     this.editService.setUser(user);
   
     this.router.navigate(['edit-user']);
-  }
-
-  addUser() {
-    this.router.navigate(['add-user']);
   }
 
   deleteUser(user: User) {

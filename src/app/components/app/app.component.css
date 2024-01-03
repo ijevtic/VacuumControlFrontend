@@ -18,3 +18,7 @@
       color: white;
     }
   }
+
+  .flex-spacer {
+    flex: 1;
+  }

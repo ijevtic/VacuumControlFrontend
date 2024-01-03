@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 
@@ -20,7 +21,7 @@ export class ConfigService {
   private permVacuumDischarge = environment.vacuumDischargePermissions
   private permVacuumSearch = environment.vacuumSearchPermissions
 
-  constructor() {
+  constructor(private router: Router) {
     this.token = '';
     this.permissions = new Map<String, Boolean>()
   }
@@ -46,6 +47,7 @@ export class ConfigService {
     localStorage.removeItem('jwt');
     this.token = '';
     this.permissions.clear();
+    this.router.navigate(['login']);
   }
 
   refreshToken(): void {

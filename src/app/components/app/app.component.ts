@@ -16,4 +16,12 @@ export class AppComponent implements OnInit{
     console.log('refreshing token')
     this.configService.refreshToken();
   }
+
+  isLoggedIn(): boolean {
+    return this.configService.isLoggedIn()
+  }
+
+  logout(): void {
+    this.configService.logout();
+  }
 }

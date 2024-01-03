@@ -4,13 +4,19 @@
       <span [routerLink]="'/'" class="navbar-brand">RAF Vacuum Control</span>
       <span class="spacer"></span>
       <span class="navbar-nav">
-        <a [routerLink]="'/'" mat-button routerLinkActive="active">Home</a>
-        <a [routerLink]="'/search'" mat-button routerLinkActive="active">Search Vacuums</a>
-        <a [routerLink]="'/history'" mat-button routerLinkActive="active">Error History</a>
-        <a [routerLink]="'/add-vacuum'" mat-button routerLinkActive="active">Add Vacuum</a>
+        <a *ngIf="isLoggedIn()" [routerLink]="'/'" mat-button routerLinkActive="active">Home</a>
+        <a *ngIf="isLoggedIn()" [routerLink]="'/search'" mat-button routerLinkActive="active">Search Vacuums</a>
+        <a *ngIf="isLoggedIn()" [routerLink]="'/history'" mat-button routerLinkActive="active">Error History</a>
+        <a *ngIf="isLoggedIn()" [routerLink]="'/add-vacuum'" mat-button routerLinkActive="active">Add Vacuum</a>
+        <a *ngIf="isLoggedIn()" [routerLink]="'/add-user'" mat-button routerLinkActive="active">Add User</a>
+
         <!-- Add more navigation links as needed -->
       </span>
-      <!-- Add more navigation links or components on the right side if needed -->
+      <span class="flex-spacer"></span> <!-- Add this spacer for flexibility -->
+      <span class="navbar-nav">
+        <a *ngIf="isLoggedIn()" (click)="logout()" [routerLink]="'/logout'" mat-button routerLinkActive="active">Logout</a>
+        <!-- Add more navigation links or components on the right side if needed -->
+      </span>
     </mat-toolbar-row>
   </mat-toolbar>
 </header>
