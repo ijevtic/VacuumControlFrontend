@@ -7,6 +7,7 @@ import { AddUserComponent } from 'src/app/components/add-user/add-user.component
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { HistoryComponent } from './components/history/history.component';
 import { SearchComponent } from './components/search/search.component';
+import { AddVacuumComponent } from './components/add-vacuum/add-vacuum.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,12 @@ const routes: Routes = [
   {
     path: "search",
     component: SearchComponent,
+    canActivate: [AuthGuard],
+    canDeactivate: [AuthGuard]
+  },
+  {
+    path: "add-vacuum",
+    component: AddVacuumComponent,
     canActivate: [AuthGuard],
     canDeactivate: [AuthGuard]
   },

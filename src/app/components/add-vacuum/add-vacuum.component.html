@@ -1,0 +1,10 @@
+<div>
+  <h2>Add Vacuum</h2>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="Vacuum Name" [(ngModel)]="vacuumName" name="vacuumName" required>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Add Vacuum</button>
+  </form>
+</div>
