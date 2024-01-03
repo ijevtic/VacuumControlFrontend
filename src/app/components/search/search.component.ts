@@ -2,10 +2,9 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { SearchRequest, Vacuum, VacuumResponse } from 'src/app/model';
 import { VacuumService } from 'src/app/services/vacuum/vacuum.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
 import { NgxMatDatetimepicker } from '@angular-material-components/datetime-picker';
 import { ThemePalette } from '@angular/material/core';
-import { BooleanInput } from '@angular/cdk/coercion';
+
 
 @Component({
   selector: 'app-search',
