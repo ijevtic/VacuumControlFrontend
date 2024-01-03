@@ -8,13 +8,14 @@ import {
   UrlTree
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ConfigService } from './services/config/config-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private configService: ConfigService) {
     // TODO: return to this
     //localStorage.removeItem('api_token');
   }
@@ -28,7 +29,18 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
       return false;
     }
 
+    const requiredPermissions = this.getRequiredPermissionsForRoute(route);
+    if (!this.configService.hasPermissions(requiredPermissions)) {
+      this.router.navigate([''])
+      return false;
+    }
+
     return true;
+  }
+
+  private getRequiredPermissionsForRoute(route: ActivatedRouteSnapshot): string[] {
+    // Extract and return the required permissions from the route data
+    return route.data && route.data['requiredPermissions'] ? route.data['requiredPermissions'] : [];
   }
 
 

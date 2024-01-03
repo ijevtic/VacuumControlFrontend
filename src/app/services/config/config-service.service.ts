@@ -119,4 +119,13 @@ export class ConfigService {
   checkVacuumSearchPermission(): boolean {
     return this.permissions.has(this.permVacuumSearch);
   }
+
+  hasPermissions(requiredPermissions: string[]): boolean {
+    for (let i = 0; i < requiredPermissions.length; i++) {
+      if (!this.permissions.has(requiredPermissions[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
 }

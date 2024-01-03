@@ -30,13 +30,15 @@ const routes: Routes = [
     path: "add-user",
     component: AddUserComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [AuthGuard]
+    canDeactivate: [AuthGuard],
+    data: { requiredPermissions: ['Create'] }
   },
   {
     path: "edit-user",
     component: EditUserComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [AuthGuard]
+    canDeactivate: [AuthGuard],
+    data: { requiredPermissions: ['Update'] }
   },
   {
     path: "history",
@@ -48,13 +50,15 @@ const routes: Routes = [
     path: "search",
     component: SearchComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [AuthGuard]
+    canDeactivate: [AuthGuard],
+    data: { requiredPermissions: ['SearchV'] }
   },
   {
     path: "add-vacuum",
     component: AddVacuumComponent,
     canActivate: [AuthGuard],
-    canDeactivate: [AuthGuard]
+    canDeactivate: [AuthGuard],
+    data: { requiredPermissions: ['AddV'] }
   },
   {
     path: "**",
