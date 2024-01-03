@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ConfigService } from '../config/config-service.service';
 import { AddVacuumRequest, ScheduleRequest, SearchRequest, VacuumResponse } from 'src/app/model';
@@ -65,10 +65,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -85,10 +84,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -105,10 +103,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -127,10 +124,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -147,10 +143,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -167,10 +162,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -187,10 +181,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }
@@ -207,10 +200,9 @@ export class VacuumService {
         // Extract the status code from the HTTP response
         return response.status;
       }),
-      catchError(error => {
-        // Handle errors here if needed
-        console.error('Error:', error);
-        throw error;
+      catchError((error) => {
+        // Extract the status code from the error response
+        return of(error.status);
       })
     );
   }

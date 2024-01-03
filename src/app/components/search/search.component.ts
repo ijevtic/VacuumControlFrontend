@@ -132,6 +132,9 @@ export class SearchComponent {
   removeVacuum(vacuum: Vacuum) {
     this.vacuumService.removeVacuum(vacuum.name).subscribe((data: any)=>{
       if (data >= 200 && data < 300) {
+        this.vacuums = this.vacuums.filter((value, index, arr) => {
+          return value.name != vacuum.name;
+        });
         this.notificationService.showNotification('Vacuum removed successfully');
       } else {
         this.notificationService.showNotification('Vacuum failed to remove');

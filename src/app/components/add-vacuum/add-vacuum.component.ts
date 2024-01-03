@@ -25,6 +25,8 @@ export class AddVacuumComponent {
     };
     this.vacuumService.addVacuum(request).subscribe(
       (response) => {
+        console.log("uso")
+        console.log(response)
         if (response == 201) {
           this.notificationService.showNotification('Vacuum added successfully');
           this.router.navigate(['/search']);
