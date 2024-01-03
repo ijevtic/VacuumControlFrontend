@@ -72,9 +72,16 @@
           <button mat-icon-button *ngIf="hasRemovePermission()" (click)="removeVacuum(vacuum)" title="Remove">
             <mat-icon>delete</mat-icon>
           </button>
+          <button mat-icon-button (click)="scheduleVacuum(vacuum)" title="Schedule">
+            <mat-icon>timer</mat-icon>
+          </button>
         </td>
       </ng-container>
     <!-- Table Row -->
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <button mat-icon-button class="refresh-button" (click)="refresh()" title="Refresh">
+    <mat-icon>refresh</mat-icon>
+  </button>

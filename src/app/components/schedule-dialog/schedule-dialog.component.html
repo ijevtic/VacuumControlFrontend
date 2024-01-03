@@ -1,0 +1,48 @@
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 400px; /* Set your desired width */
+    height: 300px; /* Set your desired height */
+    margin: auto; /* Center the container */
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Use 100% of the container width */
+  }
+
+  .form-field {
+    width: 100%; /* Use 100% of the container width */
+    margin-bottom: 16px;
+  }
+</style>
+
+<div class="container">
+  <form class="form-container" [formGroup]="scheduleForm" (ngSubmit)="schedule()">
+
+    <mat-form-field class="form-field">
+      <mat-select formControlName="status" placeholder="Select Status" required>
+        <mat-option *ngFor="let status of data.statuses" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="dateControl"
+        [min]="minDate" [max]="maxDate" [disabled]="disabled">
+      <mat-datepicker-toggle matSuffix [for]="$any(picker)"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker [showSpinners]="showSpinners" [showSeconds]="showSeconds"
+        [stepHour]="stepHour" [stepMinute]="stepMinute" [stepSecond]="stepSecond"
+        [touchUi]="touchUi" [color]="color" [enableMeridian]="enableMeridian" 
+        [disableMinute]="disableMinute" [hideTime]="hideTime">
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" [disabled]="!scheduleForm.valid" (click)="schedule()">Schedule</button>
+  </form>
+</div>

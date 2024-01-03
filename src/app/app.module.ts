@@ -32,7 +32,7 @@ import { MatTableModule } from '@angular/material/table'; // Import MatTableModu
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AddVacuumComponent } from './components/add-vacuum/add-vacuum.component';
-
+import { ScheduleDialogComponent } from './components/schedule-dialog/schedule-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +45,8 @@ import { AddVacuumComponent } from './components/add-vacuum/add-vacuum.component
     CustomDateFormatPipe,
     SearchComponent,
     VacuumStatusPipe,
-    AddVacuumComponent
+    AddVacuumComponent,
+    ScheduleDialogComponent
   ],
   imports: [
     BrowserModule,

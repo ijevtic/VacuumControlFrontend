@@ -2,3 +2,9 @@
     margin-top: 0;
     padding-top: 0;
   }
+  .refresh-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 8px; /* Adjust margin as needed */
+  }

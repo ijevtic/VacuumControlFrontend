@@ -5,6 +5,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgxMatDatetimepicker } from '@angular-material-components/datetime-picker';
 import { ThemePalette } from '@angular/material/core';
 import { NotificationService } from 'src/app/services/notification/notification.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 
 
 @Component({
@@ -40,14 +42,15 @@ export class SearchComponent {
 
 
   constructor(private vacuumService: VacuumService, private fb: FormBuilder,
-    private notificationService: NotificationService) {
+    private notificationService: NotificationService,
+    private dialog: MatDialog) {
     this.vacuumService.search(null, null, null, null).subscribe((data: VacuumResponse)=>{
       console.log(data.vacuums);
       this.vacuums = data.vacuums;
     })
     // this.picker = new MatDatepicker<Date>();
-    this.dateControlFrom = new FormControl(new Date());
-    this.dateControlTo = new FormControl(new Date());
+    this.dateControlFrom = new FormControl();
+    this.dateControlTo = new FormControl();
     this.minDate = new Date();
     this.maxDate = new Date();
     this.disabled = false;
@@ -74,13 +77,24 @@ export class SearchComponent {
   }
 
   onSubmit(): void {
-    var formName = this.searchForm.value.name != '' ? this.searchForm.value.name : null;
-    var formStatus = this.searchForm.value.status.length != 0 ? this.searchForm.value.status : null;
-    var formDateFrom = this.dateControlFrom.value ? Math.floor(this.dateControlFrom.value.getTime() / 1000): null;
-    var formDateTo = this.dateControlTo.value ? Math.floor(this.dateControlTo.value.getTime() / 1000): null;
+    this.refresh();
+  }
+
+  refresh(): void {
+    const [formName, formStatus, formDateFrom, formDateTo] = this.pickupFormInput();
     this.vacuumService.search(formName, formStatus, formDateFrom, formDateTo).subscribe((data: VacuumResponse)=>{
       this.vacuums = data.vacuums;
     })
+  }
+
+  pickupFormInput(): [string, string[], number | null, number | null] {
+    // Replace these with the actual values you want to return
+    const formName = this.searchForm.value.name != '' ? this.searchForm.value.name : null;
+    const formStatus = this.searchForm.value.status.length != 0 ? this.searchForm.value.status : null;
+    const formDateFrom = this.dateControlFrom.value ? Math.floor(this.dateControlFrom.value.getTime() / 1000): null;
+    const formDateTo = this.dateControlTo.value ? Math.floor(this.dateControlTo.value.getTime() / 1000): null;
+  
+    return [formName, formStatus, formDateFrom, formDateTo];
   }
 
   hasStartPermission(): boolean {
@@ -140,5 +154,22 @@ export class SearchComponent {
         this.notificationService.showNotification('Vacuum failed to remove');
       }
     })
+  }
+
+  scheduleVacuum(vacuum: Vacuum): void {
+    const dialogRef = this.dialog.open(ScheduleDialogComponent, {
+      width: '400px', // Set the desired width
+      data: {
+        // Pass any data to the dialog if needed
+        statuses: ['Start', 'Stop', 'Discharge'],
+        name: vacuum.name,
+        // Add other data properties as needed
+      },
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      // Handle the result after the dialog is closed, if needed
+      console.log('Dialog closed with result:', result);
+    });
   }
 }

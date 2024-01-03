@@ -207,6 +207,16 @@ export class VacuumService {
     );
   }
 
+  scheduleVacuum(scheduleRequest: ScheduleRequest, method: string): Observable<any> {
+    if(method == 'Start') {
+      return this.scheduleStartVacuum(scheduleRequest);
+    }
+    if(method == 'Stop') {
+      return this.scheduleStopVacuum(scheduleRequest);
+    }
+    return this.scheduleDischargeVacuum(scheduleRequest);
+  }
+
   hasSearchPermission(): boolean {
     return this.configService.checkVacuumSearchPermission();
   }
