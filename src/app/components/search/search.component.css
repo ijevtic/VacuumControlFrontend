@@ -6,5 +6,6 @@
     position: absolute;
     top: 0;
     right: 0;
-    margin: 8px; /* Adjust margin as needed */
+    margin-top: 8px; /* Adjust margin as needed */
+    margin-right: 80px;
   }
